@@ -19,7 +19,8 @@ routes.use(authMiddleware);
 
 routes.post('/users', UserController.update);
 
-routes.post('/comments/:company_id', CommentController.store);
+routes.get('/comments', CommentController.index);
+routes.post('/comments/:company_id/:user_id', CommentController.store);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

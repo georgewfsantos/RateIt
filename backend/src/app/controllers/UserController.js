@@ -18,13 +18,14 @@ class UserController {
     if (userExists) {
       return res.status(400).json({ error: 'User Already exists' });
     }
-    const { id, name, email, provider } = await User.create(req.body);
+    const { id, name, email, provider, type } = await User.create(req.body);
 
     return res.json({
       id,
       name,
       email,
       provider,
+      type,
     });
   }
 
@@ -62,7 +63,7 @@ class UserController {
 
     await user.update(req.body);
 
-    const { id, name, avatar } = await User.findByPk(req.userId, {
+    const { id, name, avatar, type } = await User.findByPk(req.userId, {
       include: [
         {
           model: File,
@@ -77,6 +78,7 @@ class UserController {
       name,
       email,
       avatar,
+      type,
     });
   }
 }

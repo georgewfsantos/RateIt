@@ -4,29 +4,46 @@ import File from '../models/File';
 import Comment from '../models/Comment';
 
 class CommentController {
-  async store(req, res) {
-    const { company_id } = req.params;
-
-    const userInfo = await User.findByPk(req.userId, {
-      attributes: ['id', 'name'],
+  async index(req, res) {
+    const comments = await Comment.findAll({
+      where: { company_id: req.userId },
+      attributes: ['id', 'company_id', 'createdAt', 'updatedAt'],
       include: [
         {
-          model: File,
-          as: 'avatar',
-          attributes: ['id', 'path', 'url'],
+          model: User,
+          as: 'user',
+          attributes: ['id', 'name'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
         },
       ],
     });
 
-    const { id, content, updatedAt, createdAt } = await Comment.create(
-      req.body
-    );
+    return res.json(comments);
+  }
+
+  async store(req, res) {
+    const { company_id, user_id } = req.params;
+    const { content } = req.body;
+
+    const comment = {
+      user_id,
+      company_id,
+      content,
+    };
+
+    const { id, updatedAt, createdAt } = await Comment.create(comment);
 
     return res.json({
       id,
       content,
       company_id,
-      userInfo,
+      user_id,
       createdAt,
       updatedAt,
     });
