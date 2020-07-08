@@ -7,7 +7,7 @@ class CommentController {
   async index(req, res) {
     const comments = await Comment.findAll({
       where: { company_id: req.userId },
-      attributes: ['id', 'company_id', 'createdAt', 'updatedAt'],
+      attributes: ['id', 'company_id', 'content', 'createdAt', 'updatedAt'],
       include: [
         {
           model: User,

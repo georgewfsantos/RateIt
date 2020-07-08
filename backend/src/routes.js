@@ -17,6 +17,7 @@ routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
 
+routes.get('/users', UserController.show);
 routes.post('/users', UserController.update);
 
 routes.get('/comments', CommentController.index);

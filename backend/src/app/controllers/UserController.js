@@ -29,6 +29,21 @@ class UserController {
     });
   }
 
+  async show(req, res) {
+    const user = await User.findByPk(req.userId, {
+      attributes: ['id', 'name', 'type'],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
+
+    return res.json(user);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string(),
