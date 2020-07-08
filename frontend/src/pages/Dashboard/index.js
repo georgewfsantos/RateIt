@@ -1,31 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Container, /* ImageContainer */ CommentsContainer } from './styles';
+import api from '../../services/api';
+
+import {
+  Container,
+  Wrapper,
+  ImageContainer,
+  CommentsContainer,
+} from './styles';
 
 import CommentBox from './components/CommentBox';
 
 export default function Dashboard() {
+  const [comments, setComments] = useState([]);
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    async function loadUserInfo() {
+      const response = await api.get('/users');
+
+      setUser(response.data);
+    }
+    loadUserInfo();
+  }, [user]);
+
+  useEffect(() => {
+    async function loadComments() {
+      const response = await api.get('/comments');
+
+      setComments(response.data);
+    }
+    loadComments();
+  }, []);
+
   return (
     <Container>
-      {/* <ImageContainer>
-        <img
-          src="https://images.unsplash.com/photo-1527956041665-d7a1b380c460?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-          alt=""
-        />
-      </ImageContainer> */}
+      <Wrapper>
+        <ImageContainer>
+          <img src={user.avatar?.url} alt="avatar" />
+        </ImageContainer>
 
-      <CommentsContainer>
-        <ul>
-          <li>
-            <CommentBox />
-            <CommentBox />
-            <CommentBox />
-            <CommentBox />
-            <CommentBox />
-            <CommentBox />
-          </li>
-        </ul>
-      </CommentsContainer>
+        <CommentsContainer>
+          <ul>
+            {comments.map((comment) => (
+              <li>
+                <CommentBox comment={comment} />
+              </li>
+            ))}
+          </ul>
+        </CommentsContainer>
+      </Wrapper>
     </Container>
   );
 }

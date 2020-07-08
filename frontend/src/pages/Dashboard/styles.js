@@ -1,37 +1,50 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  background: #a9131e;
   height: 100%;
-  max-width: 900px;
-  margin: auto;
-  margin-top: 5%;
+  display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const ImageContainer = styled.div`
-  background: #fff;
-  width: 100%;
+export const Wrapper = styled.div`
   height: 100%;
+  width: 100%;
   display: flex;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
+  padding: 10px;
+`;
+
+export const ImageContainer = styled.div`
+  width: 50%;
+  height: 500px;
+  background: #aaa;
+  border-radius: 4px;
 
   img {
-    width: 350px;
-    height: 350px;
-    background: #4a4442;
+    width: 100%;
+    height: 400px;
+    border-radius: 4px 4px 0 0;
   }
 `;
 
 export const CommentsContainer = styled.div`
-  display: flex;
-  flex-direction: table-column;
-
   ul {
-    margin-top: 10px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 0 10px;
+
+    li {
+      margin-top: 5px;
+    }
+  }
+
+  ul::-webkit-scrollbar {
+    display: none;
   }
 `;

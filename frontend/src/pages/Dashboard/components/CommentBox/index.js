@@ -1,15 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export default function CommentBox() {
+export default function CommentBox({ comment }) {
   return (
     <Container className="content">
-      <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar" />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-        similique a. Aliquid expedita quam odit?
-      </p>
+      <img src={comment.user.avatar?.url} alt="avatar" />
+      <p>{comment.content}</p>
     </Container>
   );
 }
+
+CommentBox.propTypes = {
+  comment: PropTypes.shape({
+    content: PropTypes.string,
+    user: PropTypes.shape({
+      avatar: PropTypes.shape({
+        url: PropTypes.string,
+      }),
+    }),
+  }).isRequired,
+};

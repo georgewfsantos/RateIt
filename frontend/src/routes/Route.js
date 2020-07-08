@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
 import AuthLayout from '~/pages/_layouts/auth';
-import DefaultLayout from '~/pages/_layouts/default';
 
 import { store } from '~/store';
+import Header from '~/components/Header';
 
 export default function RouteWrapper({
   component: Component,
@@ -21,16 +21,23 @@ export default function RouteWrapper({
     return <Redirect to="/dashboard" />;
   }
 
-  const Layout = signed ? DefaultLayout : AuthLayout;
+  // const Layout = signed ? DefaultLayout : AuthLayout;
 
   return (
     <Route
       {...rest}
-      render={(props) => (
-        <Layout>
-          <Component {...props} />
-        </Layout>
-      )}
+      render={(props) =>
+        signed ? (
+          <>
+            <Header />
+            <Component {...props} />
+          </>
+        ) : (
+          <AuthLayout>
+            <Component {...props} />
+          </AuthLayout>
+        )
+      }
     />
   );
 }
