@@ -8,13 +8,11 @@ import { signOut } from '../../store/modules/auth/actions';
 
 import AvatarInput from './AvatarInput';
 
-import { Container } from './styles';
+import { Container, Wrapper } from './styles';
 
 export default function Profile() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-
-  console.tron.log(profile);
 
   function handleSubmit(data) {
     dispatch(updateProfileRequest(data));
@@ -26,34 +24,28 @@ export default function Profile() {
 
   return (
     <Container>
-      <Form initialData={profile} onSubmit={handleSubmit}>
-        <AvatarInput name="avatar_id" />
-        <Input name="name" placeholder="Full Name" />
-        <Input name="email" placeholder="Your email" />
+      <Wrapper>
+        <Form initialData={profile} onSubmit={handleSubmit}>
+          <AvatarInput name="avatar_id" />
+          <Input name="name" placeholder="Full Name" />
+          <Input name="email" placeholder="Your email" />
 
-        <hr />
+          <hr />
 
-        <Input
-          type="password"
-          name="oldPassword"
-          placeholder="Your current password"
-        />
-        <Input
-          type="password"
-          name="password"
-          placeholder="Your new password"
-        />
-        <Input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm your new  password"
-        />
+          <Input type="password" name="oldPassword" placeholder="Senha atual" />
+          <Input type="password" name="password" placeholder="Nova senha" />
+          <Input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirmar senha"
+          />
 
-        <button type="submit">Update</button>
-      </Form>
-      <button type="button" onClick={handleSignOut}>
-        Sign out
-      </button>
+          <button type="submit">Update</button>
+        </Form>
+        <button type="button" onClick={handleSignOut}>
+          Sign out
+        </button>
+      </Wrapper>
     </Container>
   );
 }

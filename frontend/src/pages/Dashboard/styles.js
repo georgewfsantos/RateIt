@@ -14,20 +14,28 @@ export const Wrapper = styled.div`
   display: flex;
 
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 10px;
 `;
 
 export const ImageContainer = styled.div`
   width: 50%;
   height: 500px;
-  background: #aaa;
+  background: #0b0706;
   border-radius: 4px;
+  border: 2px solid #aaaaaa;
+  color: #fff;
 
   img {
     width: 100%;
-    height: 400px;
+    height: 440px;
     border-radius: 4px 4px 0 0;
+  }
+
+  h1 {
+    text-align: center;
+    align-self: center;
+    padding: 8px;
   }
 `;
 

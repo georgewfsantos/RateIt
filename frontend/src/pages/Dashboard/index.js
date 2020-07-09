@@ -23,7 +23,7 @@ export default function Dashboard() {
       setUser(response.data);
     }
     loadUserInfo();
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     async function loadComments() {
@@ -39,6 +39,8 @@ export default function Dashboard() {
       <Wrapper>
         <ImageContainer>
           <img src={user.avatar?.url} alt="avatar" />
+
+          <h1>{user.name}</h1>
         </ImageContainer>
 
         <CommentsContainer>

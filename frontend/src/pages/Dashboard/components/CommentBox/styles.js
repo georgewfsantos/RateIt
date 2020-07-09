@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   background-color: #0b0706;
   border-radius: 70px;
-  border: 2px solid #ca952d;
+  border: 2px solid #aaaaaa;
   padding: 10px;
 
   & + & {
@@ -20,6 +20,7 @@ export const Container = styled.div`
     height: 100px;
     border-radius: 50px;
     margin-right: 8px;
+    border: 2px solid #aaaaaa;
   }
 
   p {

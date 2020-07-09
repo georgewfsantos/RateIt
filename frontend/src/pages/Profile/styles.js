@@ -1,14 +1,25 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
+import { lighten } from 'polished';
 
 export const Container = styled.div`
-  max-width: 600px;
-  margin: 50px auto;
+  background: #a9131e;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+`;
+
+export const Wrapper = styled.div`
+  width: 40%;
+  background: #4a4442;
+  padding: 20px;
+  border-radius: 5px;
+  height: 600px;
 
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 10px;
     max-height: 500px;
 
     input {
@@ -18,7 +29,7 @@ export const Container = styled.div`
       height: 44px;
       padding: 0 15px;
       color: #fff;
-      margin: 0 0 10px;
+      margin: 0 0 5px;
 
       &::placeholder {
         color: rgba(255, 255, 255, 0.7);
@@ -39,9 +50,11 @@ export const Container = styled.div`
     }
 
     button {
+      align-self: center;
+      width: 100%;
       margin: 5px 0 0;
       height: 44px;
-      background: #995e34;
+      background: #0b0706;
       font-weight: bold;
       color: #fff;
       border: 0;
@@ -50,16 +63,17 @@ export const Container = styled.div`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.03, '#995e34')};
+        background: ${lighten(0.08, '#0b0706')};
       }
     }
   }
 
   > button {
+    align-self: center;
     width: 100%;
     margin: 10px 0 0;
     height: 44px;
-    background: #f14732;
+    background: #a9131e;
     font-weight: bold;
     color: #fff;
     border: 0;
@@ -68,7 +82,7 @@ export const Container = styled.div`
     transition: background 0.2s;
 
     &:hover {
-      background: ${darken(0.08, '#f14732')};
+      background: ${lighten(0.08, '#a9131e')};
     }
   }
 `;

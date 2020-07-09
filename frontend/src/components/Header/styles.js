@@ -35,6 +35,10 @@ export const Content = styled.div`
   aside {
     display: flex;
     align-items: center;
+
+    img {
+      border: 2px solid #aaaaaa;
+    }
   }
 `;
 
