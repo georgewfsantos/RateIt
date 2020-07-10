@@ -21,15 +21,16 @@ export const Wrapper = styled.div`
 export const ImageContainer = styled.div`
   width: 50%;
   height: 500px;
-  background: #0b0706;
+  background: #4a4442;
   border-radius: 4px;
-  border: 2px solid #aaaaaa;
+  border: 2px solid #756f6d;
   color: #fff;
 
   img {
     width: 100%;
     height: 440px;
     border-radius: 4px 4px 0 0;
+    border-bottom: 2px solid #756f6d;
   }
 
   h1 {

@@ -6,9 +6,9 @@ export const Container = styled.div`
   height: 150px;
   align-items: center;
   justify-content: center;
-  background-color: #0b0706;
+  background-color: #4a4442;
   border-radius: 70px;
-  border: 2px solid #aaaaaa;
+  border: 2px solid #756f6d;
   padding: 10px;
 
   & + & {
@@ -20,7 +20,7 @@ export const Container = styled.div`
     height: 100px;
     border-radius: 50px;
     margin-right: 8px;
-    border: 2px solid #aaaaaa;
+    border: 2px solid #756f6d;
   }
 
   p {
