@@ -6,6 +6,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import CommentController from './app/controllers/CommentController';
+import FilterBusinessesController from './app/controllers/FilterBusinessesController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -19,6 +20,8 @@ routes.use(authMiddleware);
 
 routes.get('/users', UserController.show);
 routes.put('/users', UserController.update);
+
+routes.get('/businesses', FilterBusinessesController.index);
 
 routes.get('/comments', CommentController.index);
 routes.post('/comments/:company_id/:user_id', CommentController.store);
