@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
-// import { Container } from './styles';
+import { Container, Title, BusinessList } from './styles';
+
+// import Business from './components/Business';
 
 const Businesses = () => {
   return (
-    <View>
-      <Text>Businesses</Text>
-    </View>
+    <Container>
+      <Title>Businesses</Title>
+      <BusinessList />
+    </Container>
   );
 };
 

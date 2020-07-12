@@ -10,7 +10,6 @@ export default (signedIn = false) => (
   <Stack.Navigator
     screenOptions={{
       headerShown: false,
-      cardStyle: { backgroundColor: 'red' },
     }}
   >
     {signedIn ? (
