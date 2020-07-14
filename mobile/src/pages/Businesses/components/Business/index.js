@@ -1,17 +1,23 @@
 import React from 'react';
 
-import { BusinessItem, Banner, BusinessName } from './styles';
+import {
+  BusinessItem,
+  Banner,
+  BusinessNameContainer,
+  BusinessName,
+} from './styles';
 
-const Business = () => {
+const Business = ({ business }) => {
   return (
     <BusinessItem>
       <Banner
         source={{
-          uri:
-            'http://localhost:3333/files/91e76cadcc14f92b00ea3007d4285857.jpg',
+          uri: business?.avatar?.url,
         }}
       />
-      <BusinessName>Business Name</BusinessName>
+      <BusinessNameContainer>
+        <BusinessName>{business?.name}</BusinessName>
+      </BusinessNameContainer>
     </BusinessItem>
   );
 };

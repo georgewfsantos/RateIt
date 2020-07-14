@@ -1,12 +1,26 @@
 import styled from 'styled-components/native';
 
-export const BusinessItem = styled.View`
-  width: 400px;
+export const BusinessItem = styled.TouchableOpacity`
+  width: 300px;
   height: 250px;
+  background: #fff;
+  align-items: center;
+  margin-right: 8px;
 `;
 
 export const Banner = styled.Image`
-  width: 200px;
+  width: 100%;
   height: 200px;
 `;
-export const BusinessName = styled.Text``;
+
+export const BusinessNameContainer = styled.View`
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const BusinessName = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+`;

@@ -10,7 +10,19 @@ export const Title = styled.Text`
   font-size: 25px;
   margin-left: 15px;
 `;
+
+export const Form = styled.View`
+  width: 90%;
+  margin-top: 20px;
+  padding: 30px;
+`;
+
 export const BusinessList = styled.FlatList.attrs({
-  showsHorizontalScrollIndicator: false,
-  contentContainerStyle: { padding: 30 },
+  horizontal: true,
+  showVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    padding: 30,
+    marginTop: 10,
+    height: 312,
+  },
 })``;
