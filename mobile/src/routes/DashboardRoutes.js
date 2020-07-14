@@ -3,6 +3,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Businesses from '../pages/Businesses';
+// import Comment from '../pages/Comment';
 
 const Dashboard = createStackNavigator();
 
@@ -15,6 +16,8 @@ export default function DashboardRoutes() {
       }}
     >
       <Dashboard.Screen name="Businesses" component={Businesses} />
+
+      {/* <Dashboard.Screen name="Comment" component={Comment} />  */}
     </Dashboard.Navigator>
   );
 }

@@ -7,9 +7,13 @@ import {
   BusinessName,
 } from './styles';
 
-const Business = ({ business }) => {
+const Business = ({ business, navigation }) => {
   return (
-    <BusinessItem>
+    <BusinessItem
+      onPress={() => {
+        navigation.navigate('Dashboard', { id: business.id });
+      }}
+    >
       <Banner
         source={{
           uri: business?.avatar?.url,

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import Business from './components/Business';
 import Input from '../../components/Input';
@@ -8,37 +9,26 @@ import api from '../../services/api';
 
 import { Container, Title, BusinessList, Form } from './styles';
 
-/* const businessList = [
-  {
-    id: 1,
-    name: 'Business Name',
-    url: 'https://cdn.eso.org/images/screen/eso1322a.jpg',
-  },
-  {
-    id: 2,
-    name: 'Business Name',
-    url: 'https://cdn.eso.org/images/screen/eso1322a.jpg',
-  },
-  {
-    id: 3,
-    name: 'Business Name',
-    url: 'https://cdn.eso.org/images/screen/eso1322a.jpg',
-  },
-  {
-    id: 4,
-    name: 'Business Name',
-    url: 'https://cdn.eso.org/images/screen/eso1322a.jpg',
-  },
-]; */
-
 const Businesses = () => {
+  const navigation = useNavigation();
+
   const [searchValue, setSearchValue] = useState('');
   const [businessList, setBusinessList] = useState([]);
+
+  useEffect(() => {
+    async function loadAllBusinesses() {
+      const response = await api.get('/businesses');
+
+      setBusinessList(response.data);
+    }
+    loadAllBusinesses();
+  }, []);
 
   async function handleSearch() {
     const response = await api.get(`/businesses?businessType=${searchValue}`);
 
     setBusinessList(response.data);
+    setSearchValue('');
   }
   return (
     <Container>
@@ -58,7 +48,9 @@ const Businesses = () => {
       <BusinessList
         data={businessList}
         keyExtractor={(business) => String(business.id)}
-        renderItem={({ item: business }) => <Business business={business} />}
+        renderItem={({ item: business }) => (
+          <Business business={business} navigation={navigation} />
+        )}
       />
     </Container>
   );

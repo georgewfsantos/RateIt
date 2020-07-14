@@ -15,8 +15,9 @@ import {
   ButtonText,
 } from './styles';
 
-export default function SignIn() {
+export default function SignUp() {
   // const dispatch = useDispatch();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,6 +33,14 @@ export default function SignIn() {
       <Container>
         <Logo source={logo} />
         <Form>
+          <FormInput
+            name="name"
+            placeholder="Informe seu nome completo"
+            placeholderTextColor="#ddd"
+            returnKeyType="next"
+            value={name}
+            onChangeText={setName}
+          />
           <FormInput
             name="email"
             placeholder="Informe seu E-mail"
@@ -53,7 +62,7 @@ export default function SignIn() {
             {loading ? (
               <ActivityIndicator size="small" color="#fff" />
             ) : (
-              <ButtonText>Entrar no sistema</ButtonText>
+              <ButtonText>Cadastrar</ButtonText>
             )}
           </SubmitButton>
         </Form>
