@@ -27,6 +27,14 @@ class FilterBusinessesController {
           where: {
             provider: true,
           },
+          attributes: ['id', 'type', 'name', 'email', 'provider', 'type'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
         });
 
     return res.json(businessList);
