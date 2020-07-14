@@ -18,6 +18,8 @@ routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
 
+routes.get('/businesses', FilterBusinessesController.index);
+
 routes.get('/users', UserController.show);
 routes.put('/users', UserController.update);
 

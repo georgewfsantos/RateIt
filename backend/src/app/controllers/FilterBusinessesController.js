@@ -1,7 +1,7 @@
 // import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import User from '../models/User';
-// import File from '../models/File';
+import File from '../models/File';
 
 class FilterBusinessesController {
   async index(req, res) {
@@ -14,6 +14,14 @@ class FilterBusinessesController {
               [Op.iLike]: `%${businessType}`,
             },
           },
+          attributes: ['id', 'type', 'name', 'email', 'provider', 'type'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
         })
       : await User.findAll({
           where: {
