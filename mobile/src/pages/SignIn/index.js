@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
-// import { useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {} from '@react-navigation/stack';
 import logo from '../../assets/rate_it.png';
 
-// import { signInRequest } from '../../store/modules/auth/actions';
+import { signInRequest } from '../../store/modules/auth/actions';
 
 import {
   Container,
@@ -13,19 +13,19 @@ import {
   Form,
   SubmitButton,
   ButtonText,
+  SignLink,
+  SignLinkText,
 } from './styles';
 
 export default function SignIn() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const loading = useSelector((state) => state.auth.loading);
-
-  const loading = false;
+  const loading = useSelector((state) => state.auth.loading);
 
   function handleSubmit() {
-    // dispatch(signInRequest(email, password));
+    dispatch(signInRequest(email, password));
   }
   return (
     <>
@@ -42,6 +42,7 @@ export default function SignIn() {
           />
           <FormInput
             name="password"
+            secureTextEntry
             placeholder="Informe sua senha"
             placeholderTextColor="#ddd"
             returnKeyType="send"
@@ -57,6 +58,14 @@ export default function SignIn() {
             )}
           </SubmitButton>
         </Form>
+
+        <SignLink
+          onPress={() => {
+            navigation.navigate('SignIn');
+          }}
+        >
+          <SignLinkText>Fazer Login</SignLinkText>
+        </SignLink>
       </Container>
     </>
   );

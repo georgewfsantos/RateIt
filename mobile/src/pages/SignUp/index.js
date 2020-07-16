@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 // import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '../../assets/rate_it.png';
 
-// import { signInRequest } from '../../store/modules/auth/actions';
+// import { signUpRequest } from '../../store/modules/auth/actions';
 
 import {
   Container,
@@ -13,10 +13,15 @@ import {
   Form,
   SubmitButton,
   ButtonText,
+  SignLink,
+  SignLinkText,
 } from './styles';
 
 export default function SignUp() {
   // const dispatch = useDispatch();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,27 +39,34 @@ export default function SignUp() {
         <Logo source={logo} />
         <Form>
           <FormInput
-            name="name"
-            placeholder="Informe seu nome completo"
+            autoCorrect={false}
             placeholderTextColor="#ddd"
+            autoCapitalize="none"
+            placeholder="Nome completo"
             returnKeyType="next"
+            onSubmitEditing={() => emailRef.current.focus()}
             value={name}
             onChangeText={setName}
           />
           <FormInput
-            name="email"
-            placeholder="Informe seu E-mail"
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Digite seu e-email"
             placeholderTextColor="#ddd"
+            ref={emailRef}
             returnKeyType="next"
+            onSubmitEditing={() => passwordRef.current.focus()}
             value={email}
             onChangeText={setEmail}
           />
           <FormInput
-            name="password"
-            placeholder="Informe sua senha"
             placeholderTextColor="#ddd"
+            placeholder="Sua senha "
+            secureTextEntry
+            ref={passwordRef}
             returnKeyType="send"
-            onSubmitEdidting={handleSubmit}
+            onSubmitEditing={handleSubmit}
             value={password}
             onChangeText={setPassword}
           />
@@ -66,6 +78,13 @@ export default function SignUp() {
             )}
           </SubmitButton>
         </Form>
+        <SignLink
+          onPress={() => {
+            navigation.navigate('SignIn');
+          }}
+        >
+          <SignLinkText>Já tenho conta</SignLinkText>
+        </SignLink>
       </Container>
     </>
   );

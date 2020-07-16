@@ -47,3 +47,13 @@ export const ButtonText = styled.Text`
   font-size: 16px;
   font-weight: bold;
 `;
+
+export const SignLink = styled.TouchableOpacity`
+  margin-top: 20px;
+`;
+
+export const SignLinkText = styled.Text`
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+`;
