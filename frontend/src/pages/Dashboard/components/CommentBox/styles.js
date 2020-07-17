@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
   height: 150px;
   align-items: center;
   justify-content: center;
@@ -23,9 +22,32 @@ export const Container = styled.div`
     border: 2px solid #756f6d;
   }
 
-  p {
-    margin-top: -60px;
-    color: #fff;
-    width: 500px;
+  .comment-content {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+
+    strong {
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    span {
+      color: #fff;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    p {
+      color: #fff;
+      word-wrap: break-word;
+      width: 500px;
+      max-height: 100px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 16px;
+    }
   }
 `;
