@@ -28,7 +28,9 @@ class CommentController {
   }
 
   async store(req, res) {
-    const { company_id, user_id } = req.params;
+    const { company_id } = req.params;
+    const user_id = req.userId;
+
     const { content } = req.body;
 
     const comment = {
