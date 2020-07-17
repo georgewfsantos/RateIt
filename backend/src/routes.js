@@ -26,7 +26,7 @@ routes.put('/users', UserController.update);
 routes.get('/businesses', FilterBusinessesController.index);
 
 routes.get('/comments', CommentController.index);
-routes.post('/comments/:company_id/:user_id', CommentController.store);
+routes.post('/comments/:company_id', CommentController.store);
 
 routes.post('/files', upload.single('file'), FileController.store);
 
