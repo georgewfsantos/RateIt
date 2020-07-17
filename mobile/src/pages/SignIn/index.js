@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import {} from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
 import logo from '../../assets/rate_it.png';
 
 import { signInRequest } from '../../store/modules/auth/actions';
@@ -19,6 +20,8 @@ import {
 
 export default function SignIn() {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

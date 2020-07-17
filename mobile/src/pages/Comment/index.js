@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
+import { Alert } from 'react-native';
 import api from '../../services/api';
 
-import SubmitButton from '../../components/Button';
-
-import { Container, CommentInput } from './styles';
+import {
+  Container,
+  SubmitButton,
+  SubmitButtonText,
+  CommentInput,
+} from './styles';
 
 const Comment = () => {
   const route = useRoute();
-  const user_id = useSelector((state) => state.user.id);
 
   const { id } = route.params;
   const navigation = useNavigation();
@@ -18,7 +21,11 @@ const Comment = () => {
   const [comment, setComment] = useState('');
 
   async function handleSubmit() {
-    await api.post(`/comments/${id}/${user_id}`);
+    await api.post(`/comments/${id}/`, { content: comment });
+
+    navigation.navigate('Businesses');
+
+    Alert.alert('Comentário postado com sucesso.', 'Obrigado e volte sempre');
   }
 
   return (
@@ -27,15 +34,18 @@ const Comment = () => {
         multiline
         numberOfLines={50}
         placeholder="Escreva aqui o seu comentário"
-        placeholderTextColor="#999999"
+        placeholderTextColor="rgba(255,255,255,0.8)"
         textAlignVertical="top"
+        textAlign="center"
         value={comment}
         onChangeText={setComment}
       />
-      <SubmitButton onPress={handleSubmit}>Enviar</SubmitButton>
+      <SubmitButton onPress={handleSubmit}>
+        <SubmitButtonText>Enviar</SubmitButtonText>
+      </SubmitButton>
 
       <SubmitButton onPress={() => navigation.navigate('Businesses')}>
-        Voltar
+        <SubmitButtonText>Voltar</SubmitButtonText>
       </SubmitButton>
     </Container>
   );

@@ -11,7 +11,7 @@ const Business = ({ business, navigation }) => {
   return (
     <BusinessItem
       onPress={() => {
-        navigation.navigate('Dashboard', { id: business.id });
+        navigation.navigate('Comment', { id: business.id });
       }}
     >
       <Banner
