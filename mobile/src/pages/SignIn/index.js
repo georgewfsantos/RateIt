@@ -67,7 +67,7 @@ export default function SignIn() {
             navigation.navigate('SignIn');
           }}
         >
-          <SignLinkText>Fazer Login</SignLinkText>
+          <SignLinkText>Criar conta</SignLinkText>
         </SignLink>
       </Container>
     </>

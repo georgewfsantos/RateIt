@@ -7,7 +7,14 @@ import SubmitButton from '../../components/Button';
 
 import api from '../../services/api';
 
-import { Container, Title, BusinessList, Form } from './styles';
+import {
+  Container,
+  Title,
+  BusinessList,
+  Form,
+  ProfileLink,
+  ProfileLinkText,
+} from './styles';
 
 const Businesses = () => {
   const navigation = useNavigation();
@@ -52,6 +59,10 @@ const Businesses = () => {
           <Business business={business} navigation={navigation} />
         )}
       />
+
+      <ProfileLink onPress={() => navigation.navigate('Profile')}>
+        <ProfileLinkText>Meu Perfil</ProfileLinkText>
+      </ProfileLink>
     </Container>
   );
 };

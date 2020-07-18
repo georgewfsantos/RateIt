@@ -19,10 +19,20 @@ export const Form = styled.View`
 
 export const BusinessList = styled.FlatList.attrs({
   horizontal: true,
-  showVerticalScrollIndicator: false,
+  showsHorizontalScrollIndicator: false,
   contentContainerStyle: {
     padding: 30,
     marginTop: 10,
     height: 312,
   },
 })``;
+
+export const ProfileLink = styled.TouchableOpacity`
+  margin-bottom: 10px;
+`;
+
+export const ProfileLinkText = styled.Text`
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+`;
