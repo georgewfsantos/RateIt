@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 // import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import logo from '../../assets/rate_it.png';
 
@@ -19,6 +20,8 @@ import {
 
 export default function SignUp() {
   // const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const emailRef = useRef();
   const passwordRef = useRef();
 

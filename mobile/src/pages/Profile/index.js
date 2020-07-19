@@ -13,7 +13,7 @@ const Profile = () => {
   const options = {};
 
   function handleChoosePicture() {
-    ImagePicker.launchImageLibrary(options, (response) => {
+    ImagePicker.showImagePicker(options, (response) => {
       console.log('response', response);
     });
   }
