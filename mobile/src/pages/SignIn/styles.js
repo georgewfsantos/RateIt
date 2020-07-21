@@ -30,7 +30,7 @@ export const FormInput = styled.TextInput`
   font-size: 16px;
   padding-left: 20px;
 `;
-export const SubmitButton = styled(TouchableOpacity)`
+export const SubmitButton = styled.TouchableOpacity`
   margin-top: 5px;
   align-items: center;
   justify-content: center;
