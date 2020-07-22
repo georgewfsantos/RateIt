@@ -12,3 +12,27 @@ export const Back = styled.TouchableOpacity`
 export const BackText = styled.Text`
   color: #fff;
 `;
+
+export const Form = styled.View`
+  align-self: stretch;
+  margin-top: 50px;
+  align-items: center;
+`;
+
+export const FormInput = styled.TextInput`
+  margin-bottom: 10px;
+  color: #fff;
+  width: 100%;
+  max-width: 340px;
+  background: rgba(0, 0, 0, 0.1);
+  height: 50px;
+  border-radius: 4px;
+  font-size: 16px;
+  padding-left: 20px;
+`;
+
+export const AvatarImage = styled.Image`
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+`;

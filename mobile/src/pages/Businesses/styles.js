@@ -21,7 +21,7 @@ export const BusinessList = styled.FlatList.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
   contentContainerStyle: {
-    padding: 30,
+    paddingHorizontal: 50,
     marginTop: 10,
     height: 312,
   },
