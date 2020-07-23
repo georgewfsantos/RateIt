@@ -15,7 +15,7 @@ export const BackText = styled.Text`
 
 export const Form = styled.View`
   align-self: stretch;
-  margin-top: 50px;
+  margin-top: 10px;
   align-items: center;
 `;
 

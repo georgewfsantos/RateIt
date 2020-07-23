@@ -28,7 +28,8 @@ const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.profile);
 
-  const [picture, setPicture] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [image, setImage] = useState(null);
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -37,12 +38,37 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   function handleChoosePicture() {
-    const options = {
-      noData: true,
-    };
-    ImagePicker.showImagePicker(options, async (response) => {
-      if (response) {
-        setPicture(response);
+    const options = {};
+    ImagePicker.showImagePicker(options, (upload) => {
+      if (upload) {
+        // console.log(upload);
+        const filePreview = {
+          uri: `data:image/jpeg;base64,${upload.data}`,
+        };
+
+        let prefix;
+        let ext;
+
+        if (upload.fileName) {
+          [prefix, ext] = upload.fileName.split('.');
+          ext = ext.toLocaleLowerCase() === 'heic' ? 'jpg' : ext;
+        } else {
+          prefix = new Date().getTime();
+          ext = 'jpg';
+        }
+
+        /* const fileObj = {
+          name: `${prefix}.${ext}`,
+          path: upload.path,
+        }; */
+
+        const fileObj = {
+          uri: upload.uri,
+          type: upload.type,
+          name: `${prefix}.${ext}`,
+        };
+        setImage(fileObj);
+        setPreview(filePreview);
       } else {
         Alert.alert(
           'Ocorreu um erro!',
@@ -50,6 +76,18 @@ const Profile = () => {
         );
       }
     });
+  }
+
+  async function handleSubmitFile() {
+    const data = new FormData();
+
+    console.log(image);
+
+    data.append('file', image);
+
+    const response = await api.post('/files', data);
+
+    console.log(response);
   }
 
   function handleSubmit() {
@@ -65,16 +103,19 @@ const Profile = () => {
       <Text>Profile</Text>
 
       <AvatarImage
-        onPress={handleChoosePicture}
         source={{
-          uri: picture?.uri
-            ? picture.uri
+          uri: preview?.uri
+            ? preview.uri
             : user?.avatar?.url || 'https://i.stack.imgur.com/l60Hf.png',
         }}
       />
 
       <Back onPress={handleChoosePicture}>
         <BackText>Editar Foto</BackText>
+      </Back>
+
+      <Back onPress={handleSubmitFile}>
+        <BackText>Salvar Foto</BackText>
       </Back>
 
       <Form>
