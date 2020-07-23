@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 
 import Business from './components/Business';
@@ -61,6 +63,7 @@ const Businesses = () => {
       />
 
       <ProfileLink onPress={() => navigation.navigate('Profile')}>
+        <Icon name="user" size={20} color="#fff" />
         <ProfileLinkText>Meu Perfil</ProfileLinkText>
       </ProfileLink>
     </Container>

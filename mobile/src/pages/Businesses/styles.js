@@ -28,11 +28,15 @@ export const BusinessList = styled.FlatList.attrs({
 })``;
 
 export const ProfileLink = styled.TouchableOpacity`
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ProfileLinkText = styled.Text`
   color: #fff;
   font-weight: bold;
   font-size: 16px;
+  margin-left: 8px;
 `;

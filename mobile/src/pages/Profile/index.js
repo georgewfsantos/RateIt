@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import { Text, Alert } from 'react-native';
 
@@ -15,11 +15,17 @@ import api from '../../services/api';
 
 import {
   Container,
-  Back,
-  BackText,
+  BackButton,
+  BackButtonText,
   Form,
   FormInput,
   AvatarImage,
+  EditPhotoButton,
+  EditPhotoButtonText,
+  SavePhotoButton,
+  SavePhotoButtonText,
+  LogoutButton,
+  LogoutButtonText,
 } from './styles';
 
 const Profile = () => {
@@ -30,6 +36,7 @@ const Profile = () => {
 
   const [preview, setPreview] = useState(null);
   const [image, setImage] = useState(null);
+  const [avatarId, setAvatarId] = useState(null);
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -41,7 +48,6 @@ const Profile = () => {
     const options = {};
     ImagePicker.showImagePicker(options, (upload) => {
       if (upload) {
-        // console.log(upload);
         const filePreview = {
           uri: `data:image/jpeg;base64,${upload.data}`,
         };
@@ -56,11 +62,6 @@ const Profile = () => {
           prefix = new Date().getTime();
           ext = 'jpg';
         }
-
-        /* const fileObj = {
-          name: `${prefix}.${ext}`,
-          path: upload.path,
-        }; */
 
         const fileObj = {
           uri: upload.uri,
@@ -81,17 +82,25 @@ const Profile = () => {
   async function handleSubmitFile() {
     const data = new FormData();
 
-    console.log(image);
-
     data.append('file', image);
 
     const response = await api.post('/files', data);
 
-    console.log(response);
+    const { id } = response.data;
+
+    setAvatarId(id);
   }
 
   function handleSubmit() {
-    // dispatch(updateProfileRequest(data));
+    const profileData = {
+      name,
+      email,
+      oldPassword,
+      password,
+      confirmPassword,
+      avatar_id: avatarId,
+    };
+    dispatch(updateProfileRequest(profileData));
   }
 
   function handleSignOut() {
@@ -100,8 +109,6 @@ const Profile = () => {
 
   return (
     <Container style={{ flex: 1, alignItems: 'center' }}>
-      <Text>Profile</Text>
-
       <AvatarImage
         source={{
           uri: preview?.uri
@@ -110,13 +117,15 @@ const Profile = () => {
         }}
       />
 
-      <Back onPress={handleChoosePicture}>
-        <BackText>Editar Foto</BackText>
-      </Back>
+      <EditPhotoButton onPress={handleChoosePicture}>
+        <EditPhotoButtonText>
+          <Icon name="camera" size={25} color="#fff" />
+        </EditPhotoButtonText>
+      </EditPhotoButton>
 
-      <Back onPress={handleSubmitFile}>
-        <BackText>Salvar Foto</BackText>
-      </Back>
+      <SavePhotoButton onPress={handleSubmitFile}>
+        <SavePhotoButtonText>Salvar Foto</SavePhotoButtonText>
+      </SavePhotoButton>
 
       <Form>
         <FormInput
@@ -160,13 +169,15 @@ const Profile = () => {
         </SubmitButton>
       </Form>
 
-      <Back onPress={() => navigation.navigate('Businesses')}>
-        <BackText>Dashboard</BackText>
-      </Back>
+      <BackButton onPress={() => navigation.navigate('Businesses')}>
+        <Icon name="arrow-left" size={25} color="#fff" />
+        <BackButtonText>Dashboard</BackButtonText>
+      </BackButton>
 
-      <Back onPress={handleSignOut}>
-        <BackText>Sair</BackText>
-      </Back>
+      <LogoutButton onPress={handleSignOut}>
+        <Icon name="log-out" size={20} color="#fff" />
+        <LogoutButtonText>Logout</LogoutButtonText>
+      </LogoutButton>
     </Container>
   );
 };

@@ -37,7 +37,7 @@ export function* signUp({ payload }) {
       password,
     });
   } catch (err) {
-    Aler.alert(
+    Alert.alert(
       'Sign up has failed.',
       'Please check the information you provided'
     );

@@ -13,7 +13,6 @@ export default function DashboardRoutes() {
         headerShown: false,
         cardStyle: { backgroundColor: '#a9131e' },
       }}
-      initialRouteName="SignIn"
     >
       <Auth.Screen name="SignIn" component={SignIn} />
       <Auth.Screen name="SignUp" component={SignUp} />

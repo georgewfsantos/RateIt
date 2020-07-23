@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const BusinessItem = styled.TouchableOpacity`
-  width: 305px;
+  width: 290px;
   height: 250px;
   background: #fff;
   align-items: center;
