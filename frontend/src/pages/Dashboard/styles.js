@@ -30,6 +30,7 @@ export const ImageContainer = styled.div`
     width: 100%;
     word-wrap: break-word;
     padding: 20px;
+    font-size: 20px;
   }
 
   img {
