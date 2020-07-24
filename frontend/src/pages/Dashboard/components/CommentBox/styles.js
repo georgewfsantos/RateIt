@@ -39,6 +39,16 @@ export const Container = styled.div`
       margin-top: 5px;
       font-size: 14px;
     }
+
+    button {
+      max-width: 300px;
+      background: none;
+      border: 0;
+      text-align: left;
+      margin-top: 5px;
+      font-weight: bold;
+      color: #fff;
+    }
     p {
       color: #fff;
       word-wrap: break-word;

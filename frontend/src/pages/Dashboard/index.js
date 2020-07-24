@@ -13,8 +13,10 @@ import CommentBox from './components/CommentBox';
 
 export default function Dashboard() {
   const [comments, setComments] = useState([]);
-
+  const [fullComment, setFullComment] = useState([]);
   const [user, setUser] = useState({});
+
+  const [showFullComment, setshowFullComment] = useState(false);
 
   useEffect(() => {
     async function loadUserInfo() {
@@ -34,20 +36,34 @@ export default function Dashboard() {
     loadComments();
   }, []);
 
+  function handleCommentVisible(content) {
+    setshowFullComment(!showFullComment);
+
+    setFullComment(content);
+  }
+
   return (
     <Container>
       <Wrapper>
         <ImageContainer>
-          <img src={user.avatar?.url} alt="avatar" />
-
-          <h1>{user.name}</h1>
+          {showFullComment ? (
+            <p>{fullComment}</p>
+          ) : (
+            <>
+              <img src={user.avatar?.url} alt="avatar" />
+              <h1>{user.name}</h1>
+            </>
+          )}
         </ImageContainer>
 
         <CommentsContainer>
           <ul>
             {comments.map((comment) => (
-              <li>
-                <CommentBox comment={comment} />
+              <li key={comment.id}>
+                <CommentBox
+                  comment={comment}
+                  commentVisible={handleCommentVisible}
+                />
               </li>
             ))}
           </ul>

@@ -26,6 +26,12 @@ export const ImageContainer = styled.div`
   border: 2px solid #756f6d;
   color: #fff;
 
+  p {
+    width: 100%;
+    word-wrap: break-word;
+    padding: 20px;
+  }
+
   img {
     width: 100%;
     height: 440px;
