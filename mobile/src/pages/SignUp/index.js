@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 import logo from '../../assets/rate_it.png';
 
-// import { signUpRequest } from '../../store/modules/auth/actions';
+import { signUpRequest } from '../../store/modules/auth/actions';
 
 import {
   Container,
@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 export default function SignUp() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const emailRef = useRef();
@@ -29,12 +29,10 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const loading = useSelector((state) => state.auth.loading);
-
-  const loading = false;
+  const loading = useSelector((state) => state.auth.loading);
 
   function handleSubmit() {
-    // dispatch(signInRequest(email, password));
+    dispatch(signUpRequest(name, email, password));
   }
   return (
     <>

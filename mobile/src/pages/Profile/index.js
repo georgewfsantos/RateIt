@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-import { Text, Alert } from 'react-native';
+import { Alert } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
@@ -38,8 +38,8 @@ const Profile = () => {
   const [image, setImage] = useState(null);
   const [avatarId, setAvatarId] = useState(null);
 
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user?.name);
+  const [email, setEmail] = useState(user?.email);
   const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -82,13 +82,19 @@ const Profile = () => {
   async function handleSubmitFile() {
     const data = new FormData();
 
-    data.append('file', image);
+    try {
+      data.append('file', image);
 
-    const response = await api.post('/files', data);
+      const response = await api.post('/files', data);
 
-    const { id } = response.data;
+      const { id } = response.data;
 
-    setAvatarId(id);
+      setAvatarId(id);
+
+      Alert.alert('Deu certo', 'Foto salva com sucesso');
+    } catch (err) {
+      Alert.alert('Erro', `${err.message}`);
+    }
   }
 
   function handleSubmit() {

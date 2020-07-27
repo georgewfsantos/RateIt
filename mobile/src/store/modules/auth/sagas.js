@@ -36,6 +36,11 @@ export function* signUp({ payload }) {
       email,
       password,
     });
+
+    Alert.alert(
+      'Cadastro realizado com sucesso.',
+      'Você já pode realizar seu login'
+    );
   } catch (err) {
     Alert.alert(
       'Sign up has failed.',
